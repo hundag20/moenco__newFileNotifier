@@ -1,5 +1,5 @@
 var fs = require("fs");
-const { sendEmail } = require("./helpers/mailer");
+const { sendEmail } = require("./mailer");
 const FileJson = require("./models/fileJsons");
 
 const REPORT = {

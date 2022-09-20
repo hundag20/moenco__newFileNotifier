@@ -1,6 +1,6 @@
 const mailer = require("nodemailer");
 const dotenv = require("dotenv");
-dotenv.config({ path: "../env.env" });
+dotenv.config({ path: "./env.env" });
 
 let transporter;
 try {
