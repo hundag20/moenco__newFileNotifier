@@ -10,6 +10,7 @@ const config = {
   username: process.env.SERVER_USERNAME,
   password: process.env.SERVER_PASSWORD,
 };
+console.log("sftp conn string: ", config);
 try {
   (async () => {
     const p = await sftp.connect(config).then((s) => {
