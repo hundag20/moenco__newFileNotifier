@@ -23,7 +23,7 @@ try {
     attachments
   ) => {
     try {
-      // sending the email
+      //sending the email
       const to = email.map((el) => `"${too}" <${el}>`);
       const emailsent = await transporter.sendMail({
         from: "newFileNotifier@M.com",
