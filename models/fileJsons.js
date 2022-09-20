@@ -1,4 +1,4 @@
-const Model = require("../utils/database");
+const Model = require("../database");
 
 // fileJsons model.
 class FileJson extends Model {

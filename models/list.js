@@ -1,4 +1,4 @@
-const Model = require("../utils/database");
+const Model = require("../database");
 
 // List model.
 class List extends Model {
