@@ -5,7 +5,7 @@ const FileJson = require("./models/fileJsons");
 const REPORT = {
   subject: "New file Added on Moenco SFTP Server",
   message: "new file prompt on MOENCO file server",
-  email: "hundag@moenco.com.et",
+  email: ["hundag@moenco.com.et", "beakaly@moenco.com.et"],
   from: "'new file notifier (temporary email)' <trtvps@etmilestone.com>",
   to: "subscriber for new file updates",
 };
