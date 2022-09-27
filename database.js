@@ -4,15 +4,15 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./env.env" });
 
 const conn_string = {
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
+  server: process.env.DB_SERVER,
+  // port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
 };
 // Initialize knex.
 const knex = Knex({
-  client: "mysql2",
+  client: "mssql",
   connection: conn_string,
 });
 

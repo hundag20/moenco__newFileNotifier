@@ -1,6 +1,7 @@
 const Client = require("ssh2-sftp-client");
 const { listenForNewEntries } = require("./app");
 const dotenv = require("dotenv");
+const logger = require("./logger");
 dotenv.config({ path: "./env.env" });
 
 const sftp = new Client("moenco-client");
@@ -10,15 +11,17 @@ const config = {
   username: process.env.SERVER_USERNAME,
   password: process.env.SERVER_PASSWORD,
 };
-console.log("sftp conn string: ", config);
 try {
   (async () => {
-    const p = await sftp.connect(config).then((s) => {
+    const dir = await sftp.connect(config).then((s) => {
       return sftp.cwd();
     });
-    sftp.on("error", (err) => err);
-    console.log(`Remote working directory is ${p}`);
-
+    sftp.on("error", (err) => logger("error", err));
+    console.log(`Remote working directory is ${dir}`);
+    logger(
+      "info",
+      `connected to remote SFTP server, the working dir is ${dir}`
+    );
     module.exports = { sftp };
 
     listenForNewEntries();
@@ -28,4 +31,5 @@ try {
 } catch (err) {
   //TODO: log to file
   console.log(`Error: ${err.message}`);
+  logger("error", err);
 }

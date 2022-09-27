@@ -1,15 +1,19 @@
 var fs = require("fs");
 const { sendEmail } = require("./mailer");
-const FileJson = require("./models/fileJsons");
+var parser = require("simple-excel-to-json");
+const File = require("./models/file");
 
+require("./archiver.js");
+
+let allFiles = [];
 const REPORT = {
   subject: "New file Added on Moenco SFTP Server",
   message: "new file prompt on MOENCO file server",
-  email: ["hundag@moenco.com.et", "beakaly@moenco.com.et"],
+  email: ["hundag@moenco.com.et", "hundaguluma@gmail.com"],
   from: "'new file notifier (temporary email)' <trtvps@etmilestone.com>",
   to: "subscriber for new file updates",
 };
-//email client for outlook has to add sender adress to safe adresses
+//email client for outlook has to add sender address to safe adresses
 const date = new Date();
 const current_time = {
   date: date.getDate(),
@@ -23,129 +27,95 @@ const current_time = {
 const now = `${current_time.year}-${current_time.month}-${current_time.date} ${current_time.hour}:${current_time.minute}:${current_time.second}`;
 
 exports.listenForNewEntries = async () => {
-  const List = require("./models/list");
+  const logger = require("./logger");
   const { sftp } = require(".");
-
   const recursiveFunc = async () => {
     try {
-      const lists = await List.query()
-        .findById(1)
-        .then()
-        .catch((err) => console.log("list not there err: ", err));
-      const prevListLength2 = lists.filesAmount;
-      let listLength = await sftp.list("/data").then((d) => d.length);
-      /* > or < only handles adition and deletion, not rename-- 
-      renamed file will be emailed on next file addition (treated as new based on fileList.json) 
-      */
-      console.log("current files # ", listLength);
-      console.log("prev files # ", prevListLength2);
-      if (listLength > prevListLength2) {
-        //update listLength.txt
-        console.log("new file added");
-        const fileList = await sftp.list("/data");
+      //get new files
+      const fileList = await sftp.list("/data");
 
-        let prevFileList = await FileJson.query();
-        const func = (arr) => {
-          return arr.map((el) => JSON.parse(el.fileJson));
-        };
-        prevFileList = prevFileList.length > 0 ? func(prevFileList) : [];
-        //get new files
-        let newFiles = [];
+      if (fileList.length > 0) {
+        logger("info", "new files added to remote server");
 
-        if (prevFileList.length < 1) {
-          newFiles = fileList;
-        } else {
-          newFiles = fileList.filter((el, i) => {
-            //new files will be filtered out based on name and size matching
-            if (
-              prevFileList.some(
-                (el2) => el2.name === el.name && el2.size === el.size
-              )
-            ) {
-              console.log("file exists in previous file list");
-              return false;
-            } else {
-              //   console.log(file doesn't exist in previous file list);
-              return true;
-            }
+        //download new files
+        const remotePaths = fileList.map((el) => `/data/${el.name}`);
+        for (el of remotePaths) {
+          const fd = fs.openSync(`./temp/${el.split("data/")[1]}`, "w");
+
+          await sftp.fastGet(el, `./temp/${el.split("data/")[1]}`);
+          console.log("file saved: ", el.split("data/")[1]);
+          fs.close(fd);
+        }
+        logger("info", `${remotePaths.length} files downloaded to temp folder`);
+
+        //save new files to db in form of JSONs
+        for (el of remotePaths) {
+          allFiles.push({
+            name: `${el.split("data/")[1]}`,
+            content: parser.parseXls2Json(`./temp/${el.split("data/")[1]}`),
           });
         }
-        if (newFiles.length > 0) {
-          //download new files
-          const remotePaths = newFiles.map((el) => `/data/${el.name}`);
-          console.log("remotePaths", remotePaths);
-          for (el of remotePaths) {
-            const fd = fs.openSync(`./temp/${el.split("data/")[1]}`, "w");
-
-            await sftp.fastGet(el, `./temp/${el.split("data/")[1]}`);
-            console.log("file saved: ", el.split("data/")[1]);
-            fs.close(fd);
-          }
-
-          //email new files
-          const filesToMail = remotePaths.map((el) => {
-            return {
-              path: `./temp/${el.split("data/")[1]}`,
-            };
+        for (el of allFiles) {
+          await File.query().insert({
+            name: el.name,
+            content: JSON.stringify(el.content[0]),
           });
-          const newReport = {
-            ...REPORT,
-            attachments: filesToMail,
+        }
+        logger("info", `${remotePaths.length} files uploaded to DB`);
+
+        //email new files
+        const filesToMail = remotePaths.map((el) => {
+          return {
+            path: `./temp/${el.split("data/")[1]}`,
           };
-          await sendEmail(
-            newReport.msg,
-            newReport.email,
-            newReport.subject,
-            newReport.from,
-            newReport.to,
-            newReport.attachments
-          );
-
-          //delete new files();
-          remotePaths.forEach(async (el) => {
-            fs.unlink(`./temp/${el.split("data/")[1]}`, (err) => {
-              if (err) console.log(err);
-              console.log("File deleted ...");
-            });
-          });
-
-          //update list
-          await List.query().findById(1).patch({
-            filesAmount: listLength,
-            updated_at: now,
-          });
-          console.log("length updated after new files added");
-
-          //update jsonFiles
-          const files =
-            prevFileList.length > 0 ? [prevFileList, newFiles] : newFiles;
-          files.forEach(async (el) => {
-            await FileJson.query().insert({ fileJson: el });
-          });
-          console.log("new files added to filesJsons table");
-        }
-
-        //recursive
-        recursiveFunc();
-      } else if (listLength < prevListLength2) {
-        //deleted
-        console.log("file deleted");
-        await List.query().findById(1).patch({
-          filesAmount: listLength,
         });
-        console.log("length table updated after delete");
+        const newReport = {
+          ...REPORT,
+          attachments: filesToMail,
+        };
+        await sendEmail(
+          newReport.msg,
+          newReport.email,
+          newReport.subject,
+          newReport.from,
+          newReport.to,
+          newReport.attachments
+        );
+        logger("info", `notification email sent`);
 
-        //recursive
-        recursiveFunc();
+        //save files to archive
+
+        //delete new files() from DB not from file
+        for (el of remotePaths) {
+          await sftp.delete(el);
+          console.log(
+            `${el.split("data/")[1]} deleted from remote server ... `
+          );
+        }
+        logger(
+          "info",
+          `${remotePaths.length} files deleted from remote server`
+        );
       }
+
+      //recursive
+      recursiveFunc();
     } catch (err) {
       console.log("err caught by try/catch: ", err);
+      logger("error", err);
     }
-
-    //recursive
-    recursiveFunc();
   };
 
   recursiveFunc();
 };
 //FIXME: sftp.end not being recognized
+/*TODO: new logic: delete all files after saving to db... then all existing files are 
+treated as new files(no filesmount, no filesJSons)
+1. check db for files --
+2. save files to temp -- 
+3. delete files from db --
+4. save fileJsons to db --
+5. email files --
+6. Add log file
+*/
+//TODO: new file that deletes files from temp in 14 days

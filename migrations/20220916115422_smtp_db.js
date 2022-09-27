@@ -13,6 +13,12 @@ exports.up = function (knex) {
       table.increments("id");
       table.json("fileJson");
       table.timestamps(false, true);
+    })
+    .createTable("files", function (table) {
+      table.increments("id");
+      table.string("name");
+      table.json("content");
+      table.timestamps(false, true);
     });
 };
 
@@ -21,5 +27,8 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable("list").dropTable("filesjsons");
+  return knex.schema
+    .dropTable("list")
+    .dropTable("filesjsons")
+    .dropTable("files");
 };

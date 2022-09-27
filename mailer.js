@@ -1,5 +1,6 @@
 const mailer = require("nodemailer");
 const dotenv = require("dotenv");
+const logger = require("./logger");
 dotenv.config({ path: "./env.env" });
 
 let transporter;
@@ -33,7 +34,6 @@ try {
         attachments: attachments,
       });
 
-      console.log(emailsent);
       console.log("Email sent on " + new Date());
       return;
     } catch (e) {
@@ -42,4 +42,5 @@ try {
   };
 } catch (err) {
   console.log(err);
+  logger("error", err);
 }

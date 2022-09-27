@@ -5,5 +5,5 @@
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
   await knex("list").del();
-  await knex("list").insert([{ id: 1, filesAmount: 0 }]);
+  await knex("list").insert([{ filesAmount: 0 }]);
 };

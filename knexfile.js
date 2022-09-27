@@ -6,8 +6,9 @@ dotenv.config({ path: "./env.env" });
  */
 module.exports = {
   development: {
-    client: "mysql2",
+    client: "mssql",
     connection: {
+      server: process.env.DB_SERVER,
       database: process.env.DB_NAME,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
@@ -18,8 +19,9 @@ module.exports = {
   },
 
   staging: {
-    client: "mysql2",
+    client: "mssql",
     connection: {
+      server: process.env.DB_SERVER,
       database: process.env.DB_NAME,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
@@ -33,8 +35,9 @@ module.exports = {
   },
 
   production: {
-    client: "mysql2",
+    client: "mssql",
     connection: {
+      server: process.env.DB_SERVER,
       database: process.env.DB_NAME,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
