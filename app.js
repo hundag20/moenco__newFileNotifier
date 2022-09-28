@@ -4,6 +4,7 @@ var parser = require("simple-excel-to-json");
 const File = require("./models/file");
 
 require("./archiver.js");
+require("./cleanTemp.js");
 
 let allFiles = [];
 const REPORT = {
@@ -116,6 +117,6 @@ treated as new files(no filesmount, no filesJSons)
 3. delete files from db --
 4. save fileJsons to db --
 5. email files --
-6. Add log file
+6. Add log file -- 
 */
 //TODO: new file that deletes files from temp in 14 days
