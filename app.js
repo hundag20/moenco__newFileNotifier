@@ -2,6 +2,7 @@ var fs = require("fs");
 const { sendEmail } = require("./mailer");
 var parser = require("simple-excel-to-json");
 const File = require("./models/file");
+const { archiver } = require("./archiver.js");
 
 require("./archiver.js");
 require("./cleanTemp.js");
@@ -85,6 +86,10 @@ exports.listenForNewEntries = async () => {
         logger("info", `notification email sent`);
 
         //save files to archive
+        for (el of remotePaths) {
+          //fileName
+          archiver(`${el.split("data/")[1]}`);
+        }
 
         //delete new files() from DB not from file
         for (el of remotePaths) {

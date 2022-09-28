@@ -51,4 +51,3 @@ const directoryPath = path.join(__dirname, "temp");
   //run cleaner once in 24 hrs
   setInterval(func, 86400000);
 })();
-//push
