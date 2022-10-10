@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
+    "convert-excel-to-json": "^1.7.0",
+    "csvtojson": "^2.0.10",
     "dotenv": "^16.0.2",
     "gd-sprest": "^7.3.2",
     "knex": "^2.3.0",
@@ -25,6 +27,7 @@
     "simple-excel-to-json": "^2.3.0",
     "ssh2-sftp-client": "^9.0.4",
     "tedious": "^15.1.0",
-    "winston": "^3.8.2"
+    "winston": "^3.8.2",
+    "xlsx": "^0.18.5"
   }
 }

@@ -3,6 +3,7 @@ const { sendEmail } = require("./mailer");
 var parser = require("simple-excel-to-json");
 const File = require("./models/file");
 const { archiver } = require("./archiver.js");
+const xlsx = require("xlsx");
 
 require("./archiver.js");
 require("./cleanTemp.js");
@@ -11,7 +12,11 @@ let allFiles = [];
 const REPORT = {
   subject: "New file Added on Moenco SFTP Server",
   message: "new file prompt on MOENCO file server",
-  email: ["hundag@moenco.com.et", "hundaguluma@gmail.com"],
+  email: [
+    "adenm@moenco.com.et",
+    "BeakalY@moenco.com.et",
+    "hundag@moenco.com.et",
+  ],
   from: "'new file notifier (temporary email)' <trtvps@etmilestone.com>",
   to: "subscriber for new file updates",
 };
@@ -31,11 +36,29 @@ const now = `${current_time.year}-${current_time.month}-${current_time.date} ${c
 exports.listenForNewEntries = async () => {
   const logger = require("./logger");
   const { sftp } = require(".");
+  // const r = fs.readdirSync("./temp");
+  // console.log(r);
+  // for (el of r) {
+  //   if (el != "temp.txt") {
+  //     const workbook = xlsx.readFile(`./temp/${el}`, {
+  //       cellDates: true,
+  //     });
+
+  //     allFiles.push({
+  //       name: el,
+  //       content: xlsx.utils.sheet_to_json(
+  //         workbook.Sheets[workbook.SheetNames[0]]
+  //       ),
+  //     });
+  //   }
+  // }
+  // console.log(allFiles[allFiles.length - 2]);
   const recursiveFunc = async () => {
     try {
       //get new files
       const fileList = await sftp.list("/data");
 
+      //check new file existence
       if (fileList.length > 0) {
         logger("info", "new files added to remote server");
 
@@ -52,15 +75,26 @@ exports.listenForNewEntries = async () => {
 
         //save new files to db in form of JSONs
         for (el of remotePaths) {
+          const workbook = xlsx.readFile(`./temp/${el.split("data/")[1]}`, {
+            cellDates: true,
+          });
           allFiles.push({
             name: `${el.split("data/")[1]}`,
-            content: parser.parseXls2Json(`./temp/${el.split("data/")[1]}`),
+            content: xlsx.utils.sheet_to_json(
+              workbook.Sheets[workbook.SheetNames[0]]
+            ),
           });
         }
+
+        //truncate table
+        await File.query().truncate();
+        logger("info", `truncated table before adding new entries`);
+
+        //insert files
         for (el of allFiles) {
           await File.query().insert({
             name: el.name,
-            content: JSON.stringify(el.content[0]),
+            content: JSON.stringify(el.content),
           });
         }
         logger("info", `${remotePaths.length} files uploaded to DB`);
@@ -115,7 +149,7 @@ exports.listenForNewEntries = async () => {
   recursiveFunc();
 };
 //FIXME: sftp.end not being recognized
-/*TODO: new logic: delete all files after saving to db... then all existing files are 
+/*DONE new logic: delete all files after saving to db... then all existing files are 
 treated as new files(no filesmount, no filesJSons)
 1. check db for files --
 2. save files to temp -- 
@@ -124,4 +158,5 @@ treated as new files(no filesmount, no filesJSons)
 5. email files --
 6. Add log file -- 
 */
-//TODO: new file that deletes files from temp in 14 days
+//DONE: new file that deletes files from temp in 14 days
+//TODO: remove T00 parts if she asks
