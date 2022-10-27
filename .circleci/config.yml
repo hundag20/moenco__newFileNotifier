@@ -22,7 +22,7 @@ jobs:
          
 
   build: build-app
-    docker: # executor type
+    docker:  
       - image: cimg/base:stable # primary container will run the latest, production-ready base image
         auth:
           username: hundshet
