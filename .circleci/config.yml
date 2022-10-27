@@ -19,15 +19,15 @@ jobs:
       - persist_to_workspace:
           root: ~/project
           paths:
-            - .
-            jobs:
+         
+
   build: build-app
     docker: # executor type
       - image: cimg/base:stable # primary container will run the latest, production-ready base image
         auth:
           username: hundshet
           password: Hundadocker1.  # context / project UI env-var reference
-
+   - .
   # deploy: # this can be any name you choose
   #   executor: heroku/default
   #   steps:
