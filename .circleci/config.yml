@@ -5,12 +5,11 @@ orbs:
 
 jobs:
   build_and_test: # this can be any name you choose
-    executor: node/default # use the default executor defined within the orb
-       docker:  
+    docker: #node/default # use the default executor defined within the orb
       - image: cimg/base:stable # primary container will run the latest, production-ready base image
         auth:
           username: hundshet
-          password: Hundadocker1.  # context / project UI env-var reference
+          password: Hundadocker1. # context / project UI env-var reference
     steps:
       - checkout
       - node/install-packages:
@@ -24,8 +23,8 @@ jobs:
       - persist_to_workspace:
           root: ~/project
           paths:
-   - .
-    
+      - .
+
   # deploy: # this can be any name you choose
   #   executor: heroku/default
   #   steps:
