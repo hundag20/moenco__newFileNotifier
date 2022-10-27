@@ -3,7 +3,7 @@ orbs:
   node: circleci/node@5.0.2
 
 jobs:
-  build_and_test: # this can be any name you choose
+  build: # this can be any name you choose
     docker: #node/default # use the default executor defined within the orb
       - image: cimg/base:stable # primary container will run the latest, production-ready base image
         auth:
