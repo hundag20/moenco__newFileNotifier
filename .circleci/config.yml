@@ -22,7 +22,6 @@ jobs:
       - persist_to_workspace:
           root: ~/project
           paths:
-      - .
 
   # deploy: # this can be any name you choose
   #   executor: heroku/default
