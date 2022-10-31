@@ -4,7 +4,7 @@ executors:
     environment:
       IMAGE_NAME: microservices/newFileNotifier
     docker:
-      - image: microservices/newfilenotifier:stretch
+      - image: hundshet/microservices:newfilenotifier
 jobs:
   build:
     executor: docker-publisher
