@@ -8,6 +8,7 @@ const sftp = new Client("moenco-client");
 
 (async () => {
   try {
+    logger("info", `Program is running in enviroment: ${process.env.NODE_ENV}`);
     const config = {
       host: process.env.SERVER_HOST,
       username: process.env.SERVER_USERNAME,
@@ -19,7 +20,7 @@ const sftp = new Client("moenco-client");
     sftp.on("error", (err) => logger("error", err));
     logger(
       "info",
-      `connected to remote SFTP server, the working dir is ${dir}\nProgram is running in enviroment: ${process.env.NODE_ENV}`
+      `connected to remote SFTP server, the working dir is ${dir}`
     );
     module.exports = { sftp };
 
