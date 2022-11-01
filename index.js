@@ -3,8 +3,7 @@ const { listenForNewEntries } = require("./app");
 const dotenv = require("dotenv");
 require("./server");
 const logger = require("./logger");
-dotenv.config({ path: "./env.env" });
-
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 const sftp = new Client("moenco-client");
 
 (async () => {
@@ -18,10 +17,9 @@ const sftp = new Client("moenco-client");
       return sftp.cwd();
     });
     sftp.on("error", (err) => logger("error", err));
-    console.log(`Remote working directory is ${dir}`);
     logger(
       "info",
-      `connected to remote SFTP server, the working dir is ${dir}`
+      `connected to remote SFTP server, the working dir is ${dir}\nProgram is running in enviroment: ${process.env.NODE_ENV}`
     );
     module.exports = { sftp };
 

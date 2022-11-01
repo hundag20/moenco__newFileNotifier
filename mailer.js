@@ -1,7 +1,7 @@
 const mailer = require("nodemailer");
 const dotenv = require("dotenv");
 const logger = require("./logger");
-dotenv.config({ path: "./env.env" });
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 let transporter;
 try {

@@ -412,3 +412,4 @@
 {"level":"error","message":"Wed Sep 28 2022 14:11:50 GMT+0300 (East Africa Time) ... Error: EPERM: operation not permitted, open '\\\\172.20.105.115\\sf\\T_EMPLOYEE_20220928_120000.csv'"}
 {"level":"error","message":"Wed Oct 12 2022 08:12:23 GMT+0300 (East Africa Time) ... Error: Failed to connect to HAPPSRV:1433 - getaddrinfo ENOTFOUND HAPPSRV"}
 {"level":"error","message":"Tue Nov 01 2022 10:30:38 GMT+0300 (East Africa Time) ... Error: connect: Remote host refused connection"}
+{"level":"error","message":"Tue Nov 01 2022 11:17:00 GMT+0300 (East Africa Time) ... Error: connect: Invalid username"}
