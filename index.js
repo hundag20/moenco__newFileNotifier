@@ -13,11 +13,11 @@ const sftp = new Client("moenco-client");
     let filenames1 = fs.readdirSync("./");
     let filenames2 = fs.readdirSync("../");
 
-    console.log("\nFilenames in directory 1:");
+    logger("info", "\nFilenames in directory 1:");
     filenames1.forEach((file) => {
       logger("info", `file: ${file}`);
     });
-    console.log("\nFilenames in directory 2:");
+    logger("info", "\nFilenames in directory 2:");
     filenames2.forEach((file) => {
       logger("info", `file: ${file}`);
     });
@@ -26,6 +26,7 @@ const sftp = new Client("moenco-client");
       username: process.env.SERVER_USERNAME,
       password: process.env.SERVER_PASSWORD,
     };
+    logger("info", `config: ${config}`);
     const dir = await sftp.connect(config).then((s) => {
       return sftp.cwd();
     });
