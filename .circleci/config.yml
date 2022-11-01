@@ -13,6 +13,8 @@ jobs:
           name: inject env variable into dotenv file 
           command: |
             touch .env
+            echo "EMAIL_HOST=$EMAIL_HOST" > .env.production
+
             echo "SERVER_HOST=$SERVER_HOST" > .env.production
             echo "SERVER_PORT=$SERVER_PORT" > .env.production
             echo "SERVER_USERNAME=$SERVER_USERNAME" > .env.production
