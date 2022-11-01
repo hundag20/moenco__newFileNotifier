@@ -2,7 +2,7 @@ version: 2.1
 executors:
   docker-publisher:
     environment:
-      IMAGE_NAME: microservices/newFileNotifier
+      IMAGE_NAME: hundshet/microservices/newFileNotifier
     docker:
       - image: hundshet/microservices:newfilenotifier
 jobs:
