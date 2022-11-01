@@ -36,23 +36,7 @@ const now = `${current_time.year}-${current_time.month}-${current_time.date} ${c
 exports.listenForNewEntries = async () => {
   const logger = require("./logger");
   const { sftp } = require(".");
-  // const r = fs.readdirSync("./temp");
-  // console.log(r);
-  // for (el of r) {
-  //   if (el != "temp.txt") {
-  //     const workbook = xlsx.readFile(`./temp/${el}`, {
-  //       cellDates: true,
-  //     });
 
-  //     allFiles.push({
-  //       name: el,
-  //       content: xlsx.utils.sheet_to_json(
-  //         workbook.Sheets[workbook.SheetNames[0]]
-  //       ),
-  //     });
-  //   }
-  // }
-  // console.log(allFiles[allFiles.length - 2]);
   const recursiveFunc = async () => {
     try {
       //get new files
