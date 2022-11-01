@@ -19,7 +19,7 @@ app.get("/v1/logs", cors(), (req, res) => {
   res.send(content);
 });
 app.get("/v1/env", cors(), (req, res) => {
-  const content = fs.readFileSync(`./env.production`, {
+  const content = fs.readFileSync(`./.env.production`, {
     encoding: "utf8",
     flag: "r",
   });
