@@ -2960,3 +2960,7 @@
 {"level":"info","message":"Tue Nov 01 2022 10:07:42 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
 {"level":"info","message":"Tue Nov 01 2022 10:10:36 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
 {"level":"info","message":"Tue Nov 01 2022 10:11:28 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
+{"level":"info","message":"Tue Nov 01 2022 10:28:44 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
+{"level":"info","message":"Tue Nov 01 2022 10:28:54 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
+{"level":"error","message":"Tue Nov 01 2022 10:30:38 GMT+0300 (East Africa Time) ... Error: connect: Remote host refused connection"}
+{"level":"info","message":"Tue Nov 01 2022 10:30:57 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
