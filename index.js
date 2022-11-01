@@ -15,11 +15,11 @@ const sftp = new Client("moenco-client");
 
     console.log("\nFilenames in directory 1:");
     filenames1.forEach((file) => {
-      console.log("File:", file);
+      logger("info", `file: ${file}`);
     });
     console.log("\nFilenames in directory 2:");
     filenames2.forEach((file) => {
-      console.log("File:", file);
+      logger("info", `file: ${file}`);
     });
     const config = {
       host: process.env.SERVER_HOST,
