@@ -13,7 +13,6 @@ jobs:
           name: inject env variable into dotenv file 
           command: |
             touch ~/project/.env.production
-            touch ./project/.env.production
             touch .env.production
             touch ./.env.production
             touch /.env.production
@@ -21,7 +20,7 @@ jobs:
 
             echo "SERVER_HOST=$SERVER_HOST" > .env.production
             echo "SERVER_PORT=$SERVER_PORT" > /.env.production
-            echo "SERVER_USERNAME=$SERVER_USERNAME" > ./project/.env.production
+            echo "SERVER_USERNAME=$SERVER_USERNAME" > ~/project/.env.production
             echo "SERVER_PASSWORD=$SERVER_PASSWORD" > ~/project/.env.production
 
             echo "DB_HOST=$DB_HOST" > ./.env.production
