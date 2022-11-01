@@ -30,9 +30,9 @@ const sftp = new Client("moenco-client");
       username: process.env.SERVER_USERNAME,
       password: process.env.SERVER_PASSWORD,
     };
-    logger("info", `config: ${config.host}`);
-    logger("uname", `config: ${config.username}`);
-    logger("info", `config: ${config.password}`);
+    logger("info", `hsot: ${config.host}`);
+    logger("info", `uname: ${config.username}`);
+    logger("info", `pwd: ${config.password}`);
     const dir = await sftp.connect(config).then((s) => {
       return sftp.cwd();
     });
