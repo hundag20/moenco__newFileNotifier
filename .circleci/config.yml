@@ -13,19 +13,19 @@ jobs:
           name: inject env variable into dotenv file 
           command: |
             touch .env.production
-            echo "EMAIL_HOST=$EMAIL_HOST" > .env.production
+            echo -n "EMAIL_HOST=$EMAIL_HOST" > .env.production
 
-            echo "SERVER_HOST=$SERVER_HOST" > .env.production
-            echo "SERVER_PORT=$SERVER_PORT" > /.env.production
-            echo "SERVER_USERNAME=$SERVER_USERNAME" > ~/project/.env.production
-            echo "SERVER_PASSWORD=$SERVER_PASSWORD" > ~/project/.env.production
+            echo -n "SERVER_HOST=$SERVER_HOST" > .env.production
+            echo -n "SERVER_PORT=$SERVER_PORT" > /.env.production
+            echo -n "SERVER_USERNAME=$SERVER_USERNAME" > ~/project/.env.production
+            echo -n "SERVER_PASSWORD=$SERVER_PASSWORD" > ~/project/.env.production
 
-            echo "DB_HOST=$DB_HOST" > ./.env.production
-            echo "DB_SERVER=$DB_SERVER" > ~/project/.env.production
-            echo "DB_PORT=$DB_PORT" > ~/project/.env.production
-            echo "DB_USER=$DB_USER" > ~/project/.env.production
-            echo "DB_PASSWORD=$DB_PASSWORD" > ~/project/.env.production
-            echo "DB_NAME=$DB_NAME" > ~/project/.env.production
+            echo -n "DB_HOST=$DB_HOST" > ./.env.production
+            echo -n "DB_SERVER=$DB_SERVER" > ~/project/.env.production
+            echo -n "DB_PORT=$DB_PORT" > ~/project/.env.production
+            echo -n "DB_USER=$DB_USER" > ~/project/.env.production
+            echo -n "DB_PASSWORD=$DB_PASSWORD" > ~/project/.env.production
+            echo -n "DB_NAME=$DB_NAME" > ~/project/.env.production
 
       - run:
           name: Build Docker image
