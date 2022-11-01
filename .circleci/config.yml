@@ -10,6 +10,22 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
+          name: inject env variable into dotenv file 
+          command: |
+            touch .env
+            echo "SERVER_HOST=$SERVER_HOST" > .env.production
+            echo "SERVER_PORT=$SERVER_PORT" > .env.production
+            echo "SERVER_USERNAME=$SERVER_USERNAME" > .env.production
+            echo "SERVER_PASSWORD=$SERVER_PASSWORD" > .env.production
+
+            echo "DB_HOST=$DB_HOST" > .env.production
+            echo "DB_SERVER=$DB_SERVER" > .env.production
+            echo "DB_PORT=$DB_PORT" > .env.production
+            echo "DB_USER=$DB_USER" > .env.production
+            echo "DB_PASSWORD=$DB_PASSWORD" > .env.production
+            echo "DB_NAME=$DB_NAME" > .env.production
+
+      - run:
           name: Build Docker image
           command: |
             docker build -t $IMAGE_NAME . 
