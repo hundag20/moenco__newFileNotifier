@@ -2,7 +2,7 @@ version: 2.1
 executors:
   docker-publisher:
     docker:
-      - image: hundshet/microservices:newfilenotifier
+      - image: docker:17.05.0-ce-git
 jobs:
   build:
     executor: docker-publisher
