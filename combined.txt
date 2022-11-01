@@ -812,3 +812,4 @@
 {"level":"error","message":"Tue Nov 01 2022 11:17:00 GMT+0300 (East Africa Time) ... Error: connect: Invalid username"}
 {"level":"info","message":"Tue Nov 01 2022 11:18:36 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
 {"level":"info","message":"Tue Nov 01 2022 11:23:10 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /\nProgram is running in enviroment: development"}
+{"level":"info","message":"Tue Nov 01 2022 13:28:37 GMT+0300 (East Africa Time) ... Program is running in enviroment: development"}

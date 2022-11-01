@@ -1,6 +1,7 @@
 const Client = require("ssh2-sftp-client");
 const { listenForNewEntries } = require("./app");
 const dotenv = require("dotenv");
+const fs = require("fs");
 require("./server");
 const logger = require("./logger");
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
@@ -9,6 +10,17 @@ const sftp = new Client("moenco-client");
 (async () => {
   try {
     logger("info", `Program is running in enviroment: ${process.env.NODE_ENV}`);
+    let filenames1 = fs.readdirSync("./");
+    let filenames2 = fs.readdirSync("../");
+
+    console.log("\nFilenames in directory 1:");
+    filenames1.forEach((file) => {
+      console.log("File:", file);
+    });
+    console.log("\nFilenames in directory 2:");
+    filenames2.forEach((file) => {
+      console.log("File:", file);
+    });
     const config = {
       host: process.env.SERVER_HOST,
       username: process.env.SERVER_USERNAME,
