@@ -1,6 +1,7 @@
 const Client = require("ssh2-sftp-client");
 const { listenForNewEntries } = require("./app");
 const dotenv = require("dotenv");
+require("./server");
 const logger = require("./logger");
 dotenv.config({ path: "./env.env" });
 

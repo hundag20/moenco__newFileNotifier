@@ -2943,3 +2943,20 @@
 {"level":"info","message":"Thu Oct 27 2022 09:02:22 GMT+0300 (East Africa Time) ... 3 files deleted from remote server"}
 {"level":"info","message":"Thu Oct 27 2022 10:06:48 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
 {"level":"info","message":"Sat Oct 29 2022 08:30:07 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
+{"level":"info","message":"Tue Nov 01 2022 09:55:32 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
+{"level":"info","message":"Tue Nov 01 2022 09:56:00 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
+{"level":"info","message":"Tue Nov 01 2022 09:56:01 GMT+0300 (East Africa Time) ... new files added to remote server"}
+{"level":"info","message":"Tue Nov 01 2022 09:56:03 GMT+0300 (East Africa Time) ... 1 files downloaded to temp folder"}
+{"level":"info","message":"Tue Nov 01 2022 09:56:03 GMT+0300 (East Africa Time) ... truncated table before adding new entries"}
+{"level":"info","message":"Tue Nov 01 2022 09:56:04 GMT+0300 (East Africa Time) ... 1 files uploaded to DB"}
+{"level":"info","message":"Tue Nov 01 2022 09:56:06 GMT+0300 (East Africa Time) ... notification email sent"}
+{"level":"info","message":"Tue Nov 01 2022 09:56:07 GMT+0300 (East Africa Time) ... file(T_EMPLOYEE_20221101_120001.csv) archived to \"\\\\172.20.105.115S\\sf\""}
+{"level":"info","message":"Tue Nov 01 2022 09:56:07 GMT+0300 (East Africa Time) ... 1 files deleted from remote server"}
+{"level":"info","message":"Tue Nov 01 2022 09:58:55 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
+{"level":"info","message":"Tue Nov 01 2022 10:00:14 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
+{"level":"info","message":"Tue Nov 01 2022 10:04:19 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
+{"level":"info","message":"Tue Nov 01 2022 10:04:52 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
+{"level":"info","message":"Tue Nov 01 2022 10:07:07 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
+{"level":"info","message":"Tue Nov 01 2022 10:07:42 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
+{"level":"info","message":"Tue Nov 01 2022 10:10:36 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
+{"level":"info","message":"Tue Nov 01 2022 10:11:28 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
