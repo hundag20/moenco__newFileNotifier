@@ -13,7 +13,7 @@ jobs:
           name: inject env variable into dotenv file 
           command: |
             touch .env.production
-            echo -e "EMAIL_HOST=$EMAIL_HOST\nSERVER_HOST=$SERVER_HOST\nSERVER_PORT=$SERVER_PORT\nSERVER_USERNAME=$SERVER_USERNAME\nSERVER_PASSWORD=$SERVER_PASSWORD\nDB_HOST=$DB_HOST\nDB_SERVER=$DB_SERVER\nDB_PORT=$DB_PORT\nDB_USER=$DB_USER\nDB_PASSWORD=$DB_PASSWORD\nDB_NAME=$DB_NAME" > .env.production
+            echo -e 'EMAIL_HOST=$EMAIL_HOST\nSERVER_HOST=$SERVER_HOST\nSERVER_PORT=$SERVER_PORT\nSERVER_USERNAME=$SERVER_USERNAME\nSERVER_PASSWORD=$SERVER_PASSWORD\nDB_HOST=$DB_HOST\nDB_SERVER=$DB_SERVER\nDB_PORT=$DB_PORT\nDB_USER=$DB_USER\nDB_PASSWORD=$DB_PASSWORD\nDB_NAME=$DB_NAME` base64 -d > .env.production
       - run:
           name: Build Docker image
           command: |
