@@ -9,26 +9,11 @@ const sftp = new Client("moenco-client");
 
 (async () => {
   try {
-    logger("info", `Program is running in enviroment: ${process.env.NODE_ENV}`);
-    let filenames1 = fs.readdirSync("./");
-    let filenames2 = fs.readdirSync(".././");
-    let filenames3 = fs.readdirSync("./../");
-
-    logger("info", "\nFilenames in directory 1:");
-    filenames1.forEach((file) => {
-      logger("info", `file1: ${file}`);
-    });
-    logger("info", "\nFilenames in directory 2:");
-    filenames2.forEach((file) => {
-      logger("info", `file2: ${file}`);
-    });
-    filenames3.forEach((file) => {
-      logger("info", `file3: ${file}`);
-    });
+    const pwd = process.env.SERVER_PASSWORD.replace(`\\`, "");
     const config = {
       host: process.env.SERVER_HOST,
       username: process.env.SERVER_USERNAME,
-      password: process.env.SERVER_PASSWORD,
+      password: pwd,
     };
     logger("info", `hsot: ${config.host}`);
     logger("info", `uname: ${config.username}`);
