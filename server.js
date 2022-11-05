@@ -26,9 +26,9 @@ app.get("/v1/logs", cors(), (req, res) => {
 //   res.send(content);
 // });
 
-http.createServer(app).listen(3000, (err) => {
+http.createServer(app).listen(4000, (err) => {
   if (err) console.log("err", err);
-  console.log("newfilenotifer micro-service running on 3000");
+  console.log("newfilenotifer micro-service running on 4000");
 });
 module.exports = app;
 
