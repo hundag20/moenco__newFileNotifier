@@ -1,5 +1,8 @@
 /node_modules
 /.env.development
-/.env.deployment
+/.env.production
+/combined.txt
+/error.JSON
+/info.JSON
 /temp/*
 !/temp/temp.txt

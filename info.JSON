@@ -2968,3 +2968,11 @@
 {"level":"info","message":"Tue Nov 01 2022 11:18:36 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
 {"level":"info","message":"Tue Nov 01 2022 11:23:10 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /\nProgram is running in enviroment: development"}
 {"level":"info","message":"Tue Nov 01 2022 13:28:37 GMT+0300 (East Africa Time) ... Program is running in enviroment: development"}
+{"level":"error","message":"Sat Nov 05 2022 09:28:07 GMT+0300 (East Africa Time) ... TypeError: Cannot read properties of undefined (reading 'replace')"}
+{"level":"info","message":"Sat Nov 05 2022 09:28:07 GMT+0300 (East Africa Time) ... newfilenotifer micro-service running on 4000"}
+{"level":"error","message":"Sat Nov 05 2022 09:31:26 GMT+0300 (East Africa Time) ... TypeError: Cannot read properties of undefined (reading 'replace')"}
+{"level":"info","message":"Sat Nov 05 2022 09:31:26 GMT+0300 (East Africa Time) ... newfilenotifer micro-service running on 4000"}
+{"level":"error","message":"Sat Nov 05 2022 09:31:47 GMT+0300 (East Africa Time) ... TypeError: Cannot read properties of undefined (reading 'replace')"}
+{"level":"info","message":"Sat Nov 05 2022 09:31:47 GMT+0300 (East Africa Time) ... newfilenotifer micro-service running on 4000"}
+{"level":"info","message":"Sat Nov 05 2022 09:32:32 GMT+0300 (East Africa Time) ... newfilenotifer micro-service running on 4000"}
+{"level":"info","message":"Sat Nov 05 2022 09:32:35 GMT+0300 (East Africa Time) ... connected to remote SFTP server, the working dir is /"}
