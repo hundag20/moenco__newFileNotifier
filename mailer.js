@@ -34,13 +34,12 @@ try {
         attachments: attachments,
       });
 
-      console.log("Email sent on " + new Date());
+      logger("info", "Email sent on " + new Date());
       return;
     } catch (e) {
       throw e;
     }
   };
 } catch (err) {
-  console.log(err);
   logger("error", err);
 }

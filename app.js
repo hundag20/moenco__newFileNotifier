@@ -52,7 +52,7 @@ exports.listenForNewEntries = async () => {
           const fd = fs.openSync(`./temp/${el.split("data/")[1]}`, "w");
 
           await sftp.fastGet(el, `./temp/${el.split("data/")[1]}`);
-          console.log("file saved: ", el.split("data/")[1]);
+          logger("info", "file saved: ", el.split("data/")[1]);
           fs.close(fd);
         }
         logger("info", `${remotePaths.length} files downloaded to temp folder`);
@@ -112,7 +112,8 @@ exports.listenForNewEntries = async () => {
         //delete new files() from DB not from file
         for (el of remotePaths) {
           await sftp.delete(el);
-          console.log(
+          logger(
+            "info",
             `${el.split("data/")[1]} deleted from remote server ... `
           );
         }
@@ -125,7 +126,6 @@ exports.listenForNewEntries = async () => {
       //recursive
       recursiveFunc();
     } catch (err) {
-      console.log("err caught by try/catch: ", err);
       logger("error", err);
     }
   };

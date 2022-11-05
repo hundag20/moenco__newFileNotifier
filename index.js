@@ -29,7 +29,6 @@ const sftp = new Client("moenco-client");
     // return
   } catch (err) {
     //TODO: log to file
-    console.log(`Error: ${err.message}`);
     logger("error", err);
   }
 })();

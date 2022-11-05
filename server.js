@@ -3,6 +3,7 @@ const cors = require("cors");
 const fs = require("fs");
 const bodyParser = require("body-parser");
 var http = require("http");
+const logger = require("./logger");
 
 const app = express();
 
@@ -27,8 +28,8 @@ app.get("/v1/logs", cors(), (req, res) => {
 // });
 
 http.createServer(app).listen(4000, (err) => {
-  if (err) console.log("err", err);
-  console.log("newfilenotifer micro-service running on 4000");
+  if (err) logger("error", err);
+  else logger("info", "newfilenotifer micro-service running on 4000");
 });
 module.exports = app;
 
