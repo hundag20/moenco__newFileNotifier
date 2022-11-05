@@ -3,10 +3,17 @@ const logger = require("./logger");
 
 const archive = async (fileName, content) => {
   try {
-    const fd = fs.openSync(`\\\\172.20.105.115\\sf\\${fileName}`, "w");
+    const path =
+      process.env.NODE_ENV === "production"
+        ? `${process.env.ARCHIVE_LOCATION}/${fileName}`
+        : `${process.env.ARCHIVE_LOCATION}\\${fileName}`;
+    const fd = fs.openSync(path, "w");
     fs.writeFileSync(fd, content);
     fs.close(fd);
-    logger("info", `file(${fileName}) archived to "\\\\172.20.105.115S\\sf"`);
+    logger(
+      "info",
+      `file(${fileName}) archived to ${process.env.ARCHIVE_LOCATION}`
+    );
   } catch (err) {
     logger("error", err);
   }
